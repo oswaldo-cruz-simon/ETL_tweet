@@ -6,4 +6,4 @@ class ElasticSearchClient:
 		self.url = url
 		self.es = Elasticsearch([url])
 	def sendTweet(self,index,doc_type,iddoc,doc):
-		res = self.es.index(index="oswaldo", doc_type='users', id=iddoc, body=doc)
+		res = self.es.index(index=index, doc_type=doc_type, id=iddoc, body=doc)

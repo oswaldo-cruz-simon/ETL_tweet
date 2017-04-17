@@ -19,8 +19,9 @@ class TweetConsumer:
 			tweet = json.loads(message.value.decode('utf8'))
 			text = tweet["text"]
 			word, rep = countWords(text)
-			print('[%s] %s=>%d' %(message.key,word,rep) )
-			self.es.sendTweet('oswaldo','tweet',str(message.key),{'text':text})
+			iddoc = str( int(message.key)) 
+			print('[%s] %s=>%d' %(iddoc,word,rep) )
+			self.es.sendTweet('oswaldo','tweet',str(int(message.key)),{'text':text})
 
 
 consumer = TweetConsumer('localhost:9092','tweet','localhost:9200')
