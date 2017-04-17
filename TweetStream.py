@@ -36,14 +36,12 @@ class TweetStream(StreamListener):
 	def on_data(self, data):
 
 		try:
-
 			dict_data = json.loads(data)
-			
 			# se eliminan los ceros y se ordena el formato de la fecha, pasandola formato iso
 			timestamp = datetime.strptime(dict_data["created_at"].replace("+0000 ",""), "%a %b %d %H:%M:%S %Y").isoformat()
-			tweet = limpia(dict_data["text"])
-			print("["+str(TweetStream.i)+"] "+tweet)
-			self.tweetProducer.sendTweet('tweet',TweetStream.i,tweet)
+			dict_data["text"] = limpia(dict_data["text"])
+			#print("["+str(TweetStream.i)+"] "+tweet)
+			self.tweetProducer.sendTweet('tweet',TweetStream.i,dict_data)
 			TweetStream.i = TweetStream.i +1
 
 		except:
