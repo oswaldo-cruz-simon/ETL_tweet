@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # librerias utilizadas durante el proceso
 import json
 from tweepy.streaming import StreamListener
@@ -34,7 +35,6 @@ class TweetStream(StreamListener):
 		self.tweetProducer = TweetProducer('localhost:9092')
 		#i = 0
 	def on_data(self, data):
-
 		try:
 			dict_data = json.loads(data)
 			# se eliminan los ceros y se ordena el formato de la fecha, pasandola formato iso

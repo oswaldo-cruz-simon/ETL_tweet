@@ -1,0 +1,9 @@
+input {
+  file {
+    path => [ "/var/log/mesos/", "mesos*" ]
+    type => "syslog"
+  }
+}
+output {
+  elasticsearch { hosts => ["localhost:9200"] }
+}
